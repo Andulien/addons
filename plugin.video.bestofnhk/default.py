@@ -102,7 +102,7 @@ end_time = int(start_time) + ((60*60*24)-60) # date+23:59:00
 
 sch = 'http://api.nhk.or.jp/nhkworld/epg/v4/world/s'+str(int(start_time))+'-e'+str(int(end_time))+'.json?%s' % apikey
 now = 'http://api.nhk.or.jp/nhkworld/epg/v4/world/now.json?%s' % apikey
-
+vod = 'http://api.nhk.or.jp/nhkworld/vodesdlist/v1/all/all/all.json?%s' % apikey
 
 # Main Menu
 def CATEGORIES():
@@ -250,8 +250,8 @@ def IDX_LIVE_STRM():
 
 # video on demand
 def IDX_VOD(url):
-    req = urllib2.urlopen(url)
-    vod_json = json.load(req)
+    req_vod = urllib2.urlopen(vod)
+    vod_json = json.load(req_vod)
     try:
         for i in range(300):
             series_ = vod_json['data']['episodes'][i]['title']
